@@ -1,0 +1,110 @@
+<form #ngForm="ngForm" (ngSubmit)="saveForm()" [formGroup]="profileForm" class="form-container">
+  <mat-card>
+
+    <mat-card-header>
+      <mat-card-title>Profile Information</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="firstName" matInput placeholder="First name">
+            <mat-error *ngFor="let validation of profileValidationMessages.errorMessages.firstName" class="text-base">
+              <ng-container *ngIf="profileForm.controls['firstName'].hasError(validation.type)" class="error-message">
+                {{validation.message}}
+              </ng-container>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="lastName" matInput placeholder="Last name">
+            <mat-error *ngFor="let validation of profileValidationMessages.errorMessages.lastName" class="text-base">
+              <ng-container *ngIf="profileForm.controls['lastName'].hasError(validation.type)" class="error-message">
+                {{validation.message}}
+              </ng-container>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="email" matInput placeholder="Email">
+            <mat-error *ngFor="let validation of profileValidationMessages.errorMessages.email" class="text-base">
+              <ng-container *ngIf="profileForm.controls['email'].hasError(validation.type)" class="error-message">
+                {{validation.message}}
+              </ng-container>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="phoneNo" matInput placeholder="Phone No">
+            <mat-error *ngFor="let validation of profileValidationMessages.errorMessages.phoneNo" class="text-base">
+              <ng-container *ngIf="profileForm.controls['phoneNo'].hasError(validation.type)" class="error-message">
+                {{validation.message}}
+              </ng-container>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-form-field class="full-width">
+            <textarea formControlName="address" matInput placeholder="Address"></textarea>
+            <mat-error *ngFor="let validation of profileValidationMessages.errorMessages.address" class="text-base">
+              <ng-container *ngIf="profileForm.controls['address'].hasError(validation.type)" class="error-message">
+                {{validation.message}}
+              </ng-container>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 top-padding">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Select DOB</mat-label>
+            <input [matDatepicker]="picker" formControlName="dob" matInput>
+            <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngFor="let validation of profileValidationMessages.errorMessages.dob" class="text-base">
+              <ng-container *ngIf="profileForm.controls['dob'].hasError(validation.type)" class="error-message">
+                {{validation.message}}
+              </ng-container>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row pt-2">
+        <div class="col-md-12">
+          <mat-radio-group [ngClass]="{'invalid': ngForm.submitted && profileForm.get('gender').invalid}"
+                           class="margin-left" formControlName="gender">
+            <mat-radio-button value="male"> Male</mat-radio-button>
+            <mat-radio-button value="female"> Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="row pt-2">
+        <div class="col-md-12">
+          <mat-form-field class="full-width">
+            <textarea formControlName="message" matInput placeholder="Message" rows="8"></textarea>
+            <mat-error *ngFor="let validation of profileValidationMessages.errorMessages.message" class="text-base">
+              <ng-container *ngIf="profileForm.controls['message'].hasError(validation.type)" class="error-message">
+                {{validation.message}}
+              </ng-container>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button color="primary" mat-raised-button type="submit">Save</button>
+    </mat-card-actions>
+
+  </mat-card>
+</form>
